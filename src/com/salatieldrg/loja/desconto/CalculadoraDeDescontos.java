@@ -6,14 +6,11 @@ import com.salatieldrg.loja.Orcamento;
 
 public class CalculadoraDeDescontos {
 	public BigDecimal calcular(Orcamento orcamento) {
-		if(orcamento.getQuantidade() > 5) {
-			return orcamento.getValor().multiply(new BigDecimal("0.1"));
-		}
+		Desconto desconto = new DescontoParaOrcamentosComMaisDeCincoItens(
+				new DescontoParaOrcamentosDeValoresMaioresQueQuinhentos(
+						new SemDesconto()));
 		
-		if(orcamento.getValor().compareTo(new BigDecimal("500")) > 0) {
-			return orcamento.getValor().multiply(new BigDecimal("0.1"));
-		}
 		
-		return BigDecimal.ZERO;
+		return desconto.calcular(orcamento);
 	}
 }
