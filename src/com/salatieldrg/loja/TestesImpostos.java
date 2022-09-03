@@ -8,7 +8,7 @@ import com.salatieldrg.loja.imposto.ISS;
 
 public class TestesImpostos {
 	public static void main(String[] args) {
-		Orcamento orcamento = new Orcamento(new BigDecimal("100"));
+		Orcamento orcamento = new Orcamento(new BigDecimal("100"), 1);
 		CalculadoraDeImpostos calculador = new CalculadoraDeImpostos();
 		System.out.println(calculador.calcular(orcamento, new ICMS()));
 		System.out.println(calculador.calcular(orcamento, new ISS()));
