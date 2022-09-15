@@ -4,18 +4,19 @@ import java.math.BigDecimal;
 
 import com.salatieldrg.loja.Orcamento;
 
-public class DescontoParaOrcamentosComMaisDeCincoItens extends Desconto{
-	
+public class DescontoParaOrcamentosComMaisDeCincoItens extends Desconto {
+
 	public DescontoParaOrcamentosComMaisDeCincoItens(Desconto proximo) {
 		super(proximo);
 	}
 
 	@Override
-	public BigDecimal calcular(Orcamento orcamento) {
-		if (orcamento.getQuantidade() > 5) {
-			return orcamento.getValor().multiply(new BigDecimal("0.1"));
-		}
+	public BigDecimal efetuarCalculo(Orcamento orcamento) {
+		return orcamento.getValor().multiply(new BigDecimal("0.1"));
+	}
 
-		return proximo.calcular(orcamento);
+	@Override
+	public boolean deveAplicar(Orcamento orcamento) {
+		return orcamento.getQuantidade() > 5;
 	}
 }
